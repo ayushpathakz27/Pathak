@@ -1,0 +1,57 @@
+/*
+2. C program to find min and max of an array.
+*/
+#include<stdio.h>
+
+struct minmax{
+    int min;
+    int max;
+};
+
+struct minmax getMINMAX(int a[], int size){
+    struct minmax m;
+    //if only one element is selected
+    if(size == 1){
+        m.min = a[0];
+        m.max = a[0];
+    }
+
+    if(a[0]>a[1]){
+        m.min = a[1];
+        m.max = a[0];
+    }
+
+    else{
+        m.min = a[0];
+        m.max = a[1];
+    }
+
+    for(int i=2; i<size; i++){
+        if(a[i] > m.max){
+            m.max = a[i];    
+        }
+        else if(a[i] < m.min){
+            m.min = a[i];
+        }
+    }
+    return m;
+
+
+}
+
+int main(){
+    int a[50], n, i;
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter array: \n");
+    for(int i=0; i<n; i++){
+        scanf("%d", &a[i]);
+    }
+
+    struct minmax m = getMINMAX(a, n);
+    printf("Minimum number = %d\n", m.min);
+    printf("Maximum number is = %d\n", m.max);
+
+    return 0;
+}
